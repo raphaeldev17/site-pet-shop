@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Violeta Pet | Cuidado e Amor para seu Pet</title>
+  <meta name="description" content="Violeta Pet – Banho e tosa, atendimento veterinário, hospedagem e adoção responsável.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --purple: #7C3AED;
+      --purple-dark: #4C1D95;
+      --purple-light: #A78BFA;
+      --lavender: #C4B5FD;
+      --lavender-light: #EDE9FE;
+      --cream: #FFFBEB;
+      --white: #FFFFFF;
+      --pink: #FBCFE8;
+      --pink-light: #FDF2F8;
+      --text: #1F2937;
+      --text-light: #6B7280;
+      --shadow-sm: 0 2px 8px rgba(124, 58, 237, 0.08);
+      --shadow-md: 0 8px 24px rgba(124, 58, 237, 0.12);
+      --shadow-lg: 0 16px 48px rgba(124, 58, 237, 0.16);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ===== HEADER / NAV ===== */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255, 251, 235, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--lavender-light);
+      transition: box-shadow var(--transition);
+    }
+
+    .header.scrolled { box-shadow: var(--shadow-sm); }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--purple-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav__logo::before { content: '🐾'; font-size: 1.3rem; }
+
+    .nav__links { display: flex; gap: 2rem; align-items: center; }
+
+    .nav__link {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-light);
+      position: relative;
+      padding: 0.25rem 0;
+      transition: color var(--transition);
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: var(--purple);
+      border-radius: 2px;
+      transition: width var(--transition);
+    }
+
+    .nav__link:hover, .nav__link.active { color: var(--purple); }
+    .nav__link:hover::after, .nav__link.active::after { width: 100%; }
+
+    .nav__cta {
+      background: var(--purple);
+      color: var(--white);
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .nav__cta:hover { background: var(--purple-dark); transform: translateY(-1px); }
+
+    .nav__toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav__toggle span {
+      width: 24px; height: 2.5px;
+      background: var(--purple-dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .nav__toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav__toggle.open span:nth-child(2) { opacity: 0; }
+    .nav__toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--lavender-light) 50%, var(--pink-light) 100%);
+    }
+
+    .hero__decor {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero__decor--1 { width: 300px; height: 300px; background: var(--lavender); top: -80px; right: -80px; }
+    .hero__decor--2 { width: 200px; height: 200px; background: var(--pink); bottom: 10%; left: -60px; animation-delay: -3s; }
+    .hero__decor--3 { width: 120px; height: 120px; background: var(--purple-light); top: 30%; left: 15%; animation-delay: -1.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+
+    .hero__content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__text h1 {
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      color: var(--purple-dark);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero__text h1 span { color: var(--purple); }
+
+    .hero__text p {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+
+    .hero__buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn--primary { background: var(--purple); color: var(--white); box-shadow: var(--shadow-md); }
+    .btn--primary:hover { background: var(--purple-dark); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn--secondary { background: var(--white); color: var(--purple); border: 2px solid var(--lavender); }
+    .btn--secondary:hover { border-color: var(--purple); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+
+    .hero__image { position: relative; }
+
+    .hero__image img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero__badge {
+      position: absolute;
+      bottom: -16px;
+      right: 24px;
+      background: var(--white);
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--purple-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section { padding: 6rem 2rem; }
+    .section--white { background: var(--white); }
+    .section--cream { background: var(--cream); }
+    .section--lavender { background: var(--lavender-light); }
+
+    .section__header { text-align: center; max-width: 600px; margin: 0 auto 3.5rem; }
+
+    .section__label {
+      display: inline-block;
+      background: var(--lavender-light);
+      color: var(--purple);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+
+    .section__title { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--purple-dark); margin-bottom: 0.8rem; }
+    .section__desc { color: var(--text-light); font-size: 1.05rem; }
+
+    /* ===== ADOPTION GRID ===== */
+    .adoption-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .pet-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .pet-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+
+    .pet-card__img { position: relative; overflow: hidden; height: 240px; }
+
+    .pet-card__img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .pet-card:hover .pet-card__img img { transform: scale(1.06); }
+
+    .pet-card__tag {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--purple);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+    }
+
+    .pet-card__body { padding: 1.5rem; }
+
+    .pet-card__name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--purple-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .pet-card__info { display: flex; gap: 1rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+    .pet-card__info span { font-size: 0.85rem; color: var(--text-light); display: flex; align-items: center; gap: 0.3rem; }
+
+    .pet-card__temperament { font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.2rem; font-style: italic; }
+
+    .pet-card__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--lavender-light);
+      color: var(--purple);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .pet-card__btn:hover { background: var(--purple); color: var(--white); }
+
+    /* ===== SERVICES GRID ===== */
+    .services-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--purple), var(--lavender), var(--pink));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-card__icon {
+      width: 72px; height: 72px;
+      background: var(--lavender-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .service-card:hover .service-card__icon { background: var(--purple); transform: scale(1.1); }
+    .service-card:hover .service-card__icon span { filter: brightness(0) invert(1); }
+
+    .service-card__title { font-size: 1.25rem; color: var(--purple-dark); margin-bottom: 0.8rem; }
+    .service-card__desc { font-size: 0.95rem; color: var(--text-light); line-height: 1.7; }
+
+    /* ===== FOOTER ===== */
+    .footer { background: var(--purple-dark); color: var(--lavender-light); padding: 4rem 2rem 2rem; }
+
+    .footer__grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(196, 181, 253, 0.2);
+    }
+
+    .footer__brand h3 { font-size: 1.5rem; color: var(--white); margin-bottom: 0.8rem; }
+    .footer__brand h3::before { content: '🐾 '; }
+    .footer__brand p { font-size: 0.95rem; line-height: 1.7; opacity: 0.8; }
+
+    .footer__col h4 { color: var(--white); font-size: 1rem; margin-bottom: 1rem; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .footer__col ul li { margin-bottom: 0.6rem; }
+    .footer__col ul li a { font-size: 0.9rem; opacity: 0.75; transition: opacity var(--transition), color var(--transition); }
+    .footer__col ul li a:hover { opacity: 1; color: var(--pink); }
+
+    .footer__contact li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.7rem; }
+
+    .footer__social { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+
+    .footer__social a {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .footer__social a:hover { background: var(--purple); transform: translateY(-2px); }
+
+    .footer__bottom { max-width: 1200px; margin: 0 auto; padding-top: 2rem; text-align: center; font-size: 0.85rem; opacity: 0.6; }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(76, 29, 149, 0.5);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      max-width: 440px;
+      width: 100%;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal__close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      width: 36px; height: 36px;
+      border: none;
+      background: var(--lavender-light);
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--purple-dark);
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .modal__close:hover { background: var(--purple); color: var(--white); transform: rotate(90deg); }
+
+    .modal__icon { font-size: 2.5rem; text-align: center; margin-bottom: 0.5rem; }
+
+    .modal__title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--purple-dark);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal__title span { color: var(--purple); }
+
+    .modal__desc { text-align: center; font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.5rem; }
+
+    .modal__form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .modal__field label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--purple-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .modal__field input, .modal__field textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--lavender-light);
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+    }
+
+    .modal__field input:focus, .modal__field textarea:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+
+    .modal__field textarea { resize: vertical; min-height: 70px; }
+
+    .modal__submit { width: 100%; justify-content: center; margin-top: 0.5rem; }
+
+    .modal__success { text-align: center; padding: 2rem 0; }
+    .modal__success-icon { font-size: 3rem; margin-bottom: 1rem; animation: bounce 0.6s ease; }
+
+    @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+
+    .modal__success h4 { font-size: 1.3rem; color: var(--purple-dark); margin-bottom: 0.5rem; }
+    .modal__success p { color: var(--text-light); font-size: 0.95rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero__content { grid-template-columns: 1fr; text-align: center; }
+      .hero__text p { margin: 0 auto 2rem; }
+      .hero__buttons { justify-content: center; }
+      .hero__image { max-width: 500px; margin: 0 auto; }
+      .hero__image img { height: 360px; }
+      .adoption-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav__links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 280px; height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        padding: 5rem 2rem 2rem;
+        box-shadow: var(--shadow-lg);
+        transition: right var(--transition);
+      }
+
+      .nav__links.open { right: 0; }
+      .nav__link { font-size: 1.1rem; }
+      .nav__toggle { display: flex; }
+      .nav__cta { display: none; }
+
+      .hero { padding: 6rem 1.5rem 3rem; min-height: auto; }
+      .hero__image img { height: 280px; }
+      .adoption-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .services-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .footer__grid { grid-template-columns: 1fr; gap: 2rem; }
+      .section { padding: 4rem 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero__text h1 { font-size: 2rem; }
+      .hero__buttons { flex-direction: column; align-items: center; }
+      .btn { width: 100%; justify-content: center; }
+    }
+
+    .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 998; }
+    .nav-overlay.active { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#home" class="nav__logo">Violeta Pet</a>
+      <ul class="nav__links" id="navLinks" role="list">
+        <li><a href="#home" class="nav__link active">Home</a></li>
+        <li><a href="#adocao" class="nav__link">Adoção</a></li>
+        <li><a href="#servicos" class="nav__link">Serviços</a></li>
+        <li><a href="#contato" class="nav__link">Contato</a></li>
+      </ul>
+      <a href="#adocao" class="nav__cta">Adotar Agora</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__decor hero__decor--1" aria-hidden="true"></div>
+    <div class="hero__decor hero__decor--2" aria-hidden="true"></div>
+    <div class="hero__decor hero__decor--3" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__text">
+        <h1>Seu pet merece o <span>melhor cuidado</span> do mundo</h1>
+        <p>Na Violeta Pet, cada animal é tratado com amor, carinho e profissionalismo. Do banho à adoção, estamos aqui para a felicidade do seu melhor amigo.</p>
+        <div class="hero__buttons">
+          <a href="#adocao" class="btn btn--primary">🐾 Adotar um Pet</a>
+          <a href="#servicos" class="btn btn--secondary">Nossos Serviços</a>
+        </div>
+      </div>
+      <div class="hero__image">
+        <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&h=600&fit=crop&q=80" alt="Cachorro dourado feliz olhando para cima" loading="eager">
+        <div class="hero__badge">⭐ +500 pets felizes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADOÇÃO -->
+  <section class="section section--white" id="adocao">
+    <div class="section__header reveal">
+      <span class="section__label">Adoção Responsável</span>
+      <h2 class="section__title">Encontre seu novo melhor amigo</h2>
+      <p class="section__desc">Cada um deles está esperando por um lar cheio de amor. Dê uma chance a quem mais precisa.</p>
+    </div>
+
+    <div class="adoption-grid">
+      <!-- Pet 1 - Thor -->
+      <article class="pet-card reveal reveal-delay-1">
+        <div class="pet-card__img">
+          <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=600&h=400&fit=crop&q=80" alt="Filhote de Golden Retriever" loading="lazy">
+          <span class="pet-card__tag">Cão</span>
+        </div>
+        <div class="pet-card__body">
+          <h3 class="pet-card__name">Thor</h3>
+          <div class="pet-card__info">
+            <span>🎂 2 anos</span>
+            <span>📏 Grande</span>
+          </div>
+          <p class="pet-card__temperament">Alegre e protetor, adora brincar e fazer novas amizades.</p>
+          <button class="pet-card__btn" data-pet="Thor">Quero adotar 💜</button>
+        </div>
+      </article>
+
+      <!-- Pet 2 - Luna (IMAGEM CORRIGIDA) -->
+      <article class="pet-card reveal reveal-delay-2">
+        <div class="pet-card__img">
+          <img src="https://images.unsplash.com/photo-1589924691995-47043eb9a504?w=600&h=400&fit=crop&q=80" alt="Cachorro Corgi sorrindo" loading="lazy">
+          <span class="pet-card__tag">Cão</span>
+        </div>
+        <div class="pet-card__body">
+          <h3 class="pet-card__name">Luna</h3>
+          <div class="pet-card__info">
+            <span>🎂 1 ano</span>
+            <span>📏 Pequeno</span>
+          </div>
+          <p class="pet-card__temperament">Carinhosa e brincalhona, perfeita para apartamentos.</p>
+          <button class="pet-card__btn" data-pet="Luna">Quero adotar 💜</button>
+        </div>
+      </article>
+
+      <!-- Pet 3 - Biscoito -->
+      <article class="pet-card reveal reveal-delay-3">
+        <div class="pet-card__img">
+          <img src="https://images.unsplash.com/photo-1505628346881-b72b27e84530?w=600&h=400&fit=crop&q=80" alt="Cachorro Beagle deitado na grama" loading="lazy">
+          <span class="pet-card__tag">Cão</span>
+        </div>
+        <div class="pet-card__body">
+          <h3 class="pet-card__name">Biscoito</h3>
+          <div class="pet-card__info">
+            <span>🎂 3 anos</span>
+            <span>📏 Médio</span>
+          </div>
+          <p class="pet-card__temperament">Calmo e obediente, ideal para famílias com crianças.</p>
+          <button class="pet-card__btn" data-pet="Biscoito">Quero adotar 💜</button>
+        </div>
+      </article>
+
+      <!-- Pet 4 - Pipoca -->
+      <article class="pet-card reveal reveal-delay-1">
+        <div class="pet-card__img">
+          <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600&h=400&fit=crop&q=80" alt="Cachorro Pug fofo" loading="lazy">
+          <span class="pet-card__tag">Cão</span>
+        </div>
+        <div class="pet-card__body">
+          <h3 class="pet-card__name">Pipoca</h3>
+          <div class="pet-card__info">
+            <span>🎂 4 meses</span>
+            <span>📏 Pequeno</span>
+          </div>
+          <p class="pet-card__temperament">Filhote energético e curioso, ama morder tudo!</p>
+          <button class="pet-card__btn" data-pet="Pipoca">Quero adotar 💜</button>
+        </div>
+      </article>
+
+      <!-- Pet 5 - Mimi -->
+      <article class="pet-card reveal reveal-delay-2">
+        <div class="pet-card__img">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&h=400&fit=crop&q=80" alt="Gato laranja deitado" loading="lazy">
+          <span class="pet-card__tag">Gato</span>
+        </div>
+        <div class="pet-card__body">
+          <h3 class="pet-card__name">Mimi</h3>
+          <div class="pet-card__info">
+            <span>🎂 2 anos</span>
+            <span>📏 Médio</span>
+          </div>
+          <p class="pet-card__temperament">Independente mas carinhosa, adora o sol da manhã.</p>
+          <button class="pet-card__btn" data-pet="Mimi">Quero adotar 💜</button>
+        </div>
+      </article>
+
+      <!-- Pet 6 - Felix -->
+      <article class="pet-card reveal reveal-delay-3">
+        <div class="pet-card__img">
+          <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=600&h=400&fit=crop&q=80" alt="Gato tabby laranja olhando para a câmera" loading="lazy">
+          <span class="pet-card__tag">Gato</span>
+        </div>
+        <div class="pet-card__body">
+          <h3 class="pet-card__name">Felix</h3>
+          <div class="pet-card__info">
+            <span>🎂 1 ano</span>
+            <span>📏 Pequeno</span>
+          </div>
+          <p class="pet-card__temperament">Brincalhão e curioso, adora caixas e arranhadores.</p>
+          <button class="pet-card__btn" data-pet="Felix">Quero adotar 💜</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="section section--lavender" id="servicos">
+    <div class="section__header reveal">
+      <span class="section__label">Nossos Serviços</span>
+      <h2 class="section__title">Cuidado completo para seu pet</h2>
+      <p class="section__desc">Profissionais apaixonados por animais, prontos para cuidar do seu companheiro.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card reveal reveal-delay-1">
+        <div class="service-card__icon"><span>🛁</span></div>
+        <h3 class="service-card__title">Banho e Tosa</h3>
+        <p class="service-card__desc">Banho com produtos hipoalergênicos, tosa higiênica ou estilizada e hidratação da pelagem. Seu pet sai lindo e cheiroso.</p>
+      </article>
+
+      <article class="service-card reveal reveal-delay-2">
+        <div class="service-card__icon"><span>🩺</span></div>
+        <h3 class="service-card__title">Atendimento Veterinário</h3>
+        <p class="service-card__desc">Consultas, vacinas, exames e acompanhamento de saúde. Nossa equipe veterinária cuida de cada detalhe do bem-estar do seu pet.</p>
+      </article>
+
+      <article class="service-card reveal reveal-delay-3">
+        <div class="service-card__icon"><span>🏠</span></div>
+        <h3 class="service-card__title">Hospedagem e Cuidados</h3>
+        <p class="service-card__desc">Ambiente seguro e acolhedor para quando você precisa viajar. Passeios, alimentação e muito carinho durante toda a estadia.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contato">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <h3>Violeta Pet</h3>
+        <p>Há mais de 10 anos cuidando de pets com amor, dedicação e profissionalismo. Cada animal é uma família.</p>
+        <div class="footer__social" aria-label="Redes sociais">
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Facebook">👍</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+          <a href="#" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#adocao">Adoção</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Horário</h4>
+        <ul>
+          <li>Seg – Sex: 8h às 19h</li>
+          <li>Sábado: 8h às 17h</li>
+          <li>Domingo: 9h às 13h</li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Contato</h4>
+        <ul class="footer__contact">
+          <li>📍 Rua das Flores, 123 – São Paulo, SP</li>
+          <li>📞 (11) 99999-8888</li>
+          <li>✉️ contato@violetapet.com.br</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; 2026 Violeta Pet. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- MODAL DE ADOÇÃO -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal__close" id="modalClose" aria-label="Fechar">✕</button>
+      <div class="modal__icon" aria-hidden="true">🐾</div>
+      <h3 class="modal__title" id="modalTitle">Adotar <span id="modalPetName"></span></h3>
+      <p class="modal__desc">Preencha seus dados e nossa equipe entrará em contato para agendar a visita.</p>
+
+      <form id="adoptionForm" class="modal__form">
+        <div class="modal__field">
+          <label for="formName">Seu nome</label>
+          <input type="text" id="formName" name="name" placeholder="Ex: Maria Silva" required>
+        </div>
+        <div class="modal__field">
+          <label for="formPhone">Telefone / WhatsApp</label>
+          <input type="tel" id="formPhone" name="phone" placeholder="(11) 99999-8888" required>
+        </div>
+        <div class="modal__field">
+          <label for="formEmail">E-mail</label>
+          <input type="email" id="formEmail" name="email" placeholder="maria@email.com" required>
+        </div>
+        <div class="modal__field">
+          <label for="formMsg">Mensagem (opcional)</label>
+          <textarea id="formMsg" name="message" rows="3" placeholder="Conte um pouco sobre seu ambiente..."></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary modal__submit">Enviar pelo WhatsApp 💬</button>
+      </form>
+
+      <div class="modal__success" id="modalSuccess" hidden>
+        <div class="modal__success-icon">🎉</div>
+        <h4>Redirecionando para o WhatsApp...</h4>
+        <p>Seu interesse foi enviado com sucesso!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // ===== CONFIGURAÇÃO =====
+    const WHATSAPP_NUMBER = '5511999998888'; // ← TROQUE pelo número real (com DDI 55 + DDD)
+
+    // ===== MOBILE MENU =====
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function toggleMenu() {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open');
+      navOverlay.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    navToggle.addEventListener('click', toggleMenu);
+    navOverlay.addEventListener('click', toggleMenu);
+
+    navLinks.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('open')) toggleMenu();
+      });
+    });
+
+    // ===== HEADER SCROLL =====
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // ===== ACTIVE NAV LINK =====
+    const sections = document.querySelectorAll('section[id], footer[id]');
+    const navLinkEls = document.querySelectorAll('.nav__link');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinkEls.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px' });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // ===== SCROLL REVEAL =====
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ===== MODAL + WHATSAPP (FUNCIONAL) =====
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalClose = document.getElementById('modalClose');
+    const modalPetName = document.getElementById('modalPetName');
+    const adoptionForm = document.getElementById('adoptionForm');
+    const modalSuccess = document.getElementById('modalSuccess');
+
+    function openModal(petName) {
+      modalPetName.textContent = petName;
+      adoptionForm.hidden = false;
+      modalSuccess.hidden = true;
+      adoptionForm.reset();
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('formName').focus(), 350);
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Botões "Quero adotar"
+    document.querySelectorAll('.pet-card__btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const petName = this.getAttribute('data-pet');
+        openModal(petName);
+      });
+    });
+
+    // Fechar modal
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
+    });
+
+    // SUBMIT → ABRE WHATSAPP COM MENSAGEM PRÉ-PREENCHIDA
+    adoptionForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const pet = modalPetName.textContent;
+      const nome = document.getElementById('formName').value.trim();
+      const telefone = document.getElementById('formPhone').value.trim();
+      const email = document.getElementById('formEmail').value.trim();
+      const msg = document.getElementById('formMsg').value.trim();
+
+      let texto = `Olá! Gostaria de adotar o(a) *${pet}*.%0A%0A`;
+      texto += `👤 Nome: ${encodeURIComponent(nome)}%0A`;
+      texto += `📞 Telefone: ${encodeURIComponent(telefone)}%0A`;
+      texto += `✉️ E-mail: ${encodeURIComponent(email)}`;
+
+      if (msg) {
+        texto += `%0A💬 Mensagem: ${encodeURIComponent(msg)}`;
+      }
+
+      // Mostra tela de sucesso e abre WhatsApp
+      adoptionForm.hidden = true;
+      modalSuccess.hidden = false;
+
+      setTimeout(() => {
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`, '_blank');
+        closeModal();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>   
